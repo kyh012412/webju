@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<servlet>
+		<servlet-name>HelloServlet</servlet-name>
+		<servlet-class>servlet.HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloServlet</servlet-name>
+		<url-pattern>/servlet/HelloServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MVCBoardList</servlet-name>
+		<servlet-class>model2.mvcboard.ListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MVCBoardList</servlet-name>
+		<url-pattern>/mvcboard/list.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MVCBoardWrite</servlet-name>
+		<servlet-class>model2.mvcboard.WrtieController</servlet-class>
+		<multipart-config>
+			<!-- 개별 파일의 최대 바이트 크기 1mb-->
+			<max-file-size>1048576</max-file-size>
+			<!-- 전체 파일의 최대 바이트 크기 10mb-->
+			<max-request-size>10485760</max-request-size>
+		</multipart-config>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MVCBoardWrite</servlet-name>
+		<url-pattern>/mvcboard/write.do</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
