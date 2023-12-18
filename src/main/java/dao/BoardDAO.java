@@ -18,7 +18,8 @@ public class BoardDAO extends JDBCConnect{
 		List<BoardDTO> bbs = new Vector<BoardDTO>();
 		
 		//게시물의 목록 반환
-		String query = "select * from web.board";
+//		String query = "select * from web.board";
+		String query = "select * from testdb.public.board";
 		if(map.get("searchWord")!=null) {
 			query+=" where "+map.get("searchField")+" "+"Like '%"+
 					map.get("searchWord")+"%'";
@@ -54,7 +55,8 @@ public class BoardDAO extends JDBCConnect{
 		int totalCount =0;
 		//게시물 개수 반환
 		//게시물의 목록 반환
-		String query = "select count(*) totalcount from web.board";
+//		String query = "select count(*) totalcount from web.board";
+		String query = "select count(*) totalcount from testdb.public.board";
 		if(map.get("searchWord")!=null) {
 			query+=" where "+map.get("searchField")+" "+"Like '%"+
 					map.get("searchWord")+"%'";
@@ -80,7 +82,8 @@ public class BoardDAO extends JDBCConnect{
 	public int insertWrite(BoardDTO dto) {
 		int result = 0;
 		try {
-			String query = "insert into web.board("
+//			String query = "insert into web.board("
+			String query = "insert into testdb.public.board("
 					+ "num,title,content,id,visitcount,postdate) "
 					+ " values ( "
 					+ "web.seq_board_num.nextval,?,?,?,0,sysdate)";
@@ -102,7 +105,8 @@ public class BoardDAO extends JDBCConnect{
 	
 	//상세보기에 조회수 증가
 	public void updateVisitCount(String num) {
-		String query = "update web.board set "
+//		String query = "update web.board set "
+		String query = "update testdb.public.board set "
 				+ " visitcount = visitcount+1 "
 				+ " where num=?";
 		try {
@@ -122,7 +126,8 @@ public class BoardDAO extends JDBCConnect{
 	public BoardDTO selectView(String num) {
 		BoardDTO dto = new BoardDTO();
 		String query = "select b.*,m.name "
-				+ " from web.member m inner join web.board b "
+				//public.member가 없음 필요
+				+ " from testdb.public.member m inner join testdb.public.board b "
 				+ " on m.id = b.id "
 				+ " where num=?";
 		try {
@@ -150,7 +155,8 @@ public class BoardDAO extends JDBCConnect{
 	public int deletePost(BoardDTO dto) {
 		int result =0;
 		try {
-			String query = "delete from web.board where num=?";
+			String query = "delete from testdb.public.board where num=?";
+//			String query = "delete from web.board where num=?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, dto.getNum());
 			result=pstmt.executeUpdate();

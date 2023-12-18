@@ -15,10 +15,11 @@ public class JDBCConnect2 {
 	public JDBCConnect2() {
 		try {
 			//1.jdbc 드라이버 로드
+			//Class.forName("oracle.jdbc.OracleDriver");
 			Class.forName("org.postgresql.Driver");
 	
 			//2.db연결
-//			String url = "jdbc:postgresql:@20.196.201.69:15432:userdb"; 
+//			String url = "jdbc:oracle:thin:@localhost:1521:xe"; 
 			String url = "jdbc:postgresql://20.196.201.69:15432/testdb"; 
 			String id = "testuser";
 			String pass= "testuser";
